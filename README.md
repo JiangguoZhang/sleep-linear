@@ -83,6 +83,7 @@
   * There are a lot of models on the shelf and we have to pick the best one based on the evaluation results.
 
 ## What's next for Stimulus
+* Check why sleep stage 1 is not well predicted.
 * Check the contribution of each statistic, remove redundant statistics to save memory.
 * Try to integrate the model into devices that can report real-time sleep stage prediction. The model will change because we will not have datapoints after the predicted time point.
 
