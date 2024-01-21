@@ -6,23 +6,85 @@
 
 ## Inspiration
 
+
 ## What it does
-1. Clean the dataset, process the data with bandpass filters, and calculate the meaningful time-domain and frequency-domain statistics.
-2. Implemented 3 different machine learning models, including Linear Classifier, Catboost Classifier, and Multi-Layer Perceptron Classifier, to convert extracted features into 6 different sleep stages.
+### Data Wrangling
+* Clean the dataset
+  * Remove NaN data points.
+  * Remove not scored sleep stage.
+* Manipulate
+  * Using bandpass filters to extract meaning data.
+  * Normalize data to around 0.
+  * Balance the dataset by removing some Waking stage data, which are far away from the sleep stages (> 30 minutes).
+  * Calculate time domain statistics, including std, iqr, skewness, kurtosis, number of zero-crossings, Hjorth mobility, Hjorth complexity, higuch fractal dimension, petrosial fractal dimension, permutation entropy, binned entropy (4); and frequency-domain statistics including spectral Fourier statistics (4), binned Fourier entropy (7), absolute spectral power in the 0.4-30 Hz band, relative spectral power in the applied frequency bands (6), fast delta+theta spectral power, alpha/theta spectral power, delta/beta spectral power, delta/sigma spectral power and delta/theta spectral power.
+
+### Data Visualization
+* Visualize the data structure.
+* Visualize different channels including EEG Fpz-Cz, EEG Pz-Oz, EOG horizontal, Resp oro-nasal, EMG submental, Temp rectal and the sleep stage labels. Visualize the processed data.
+* Visualize the count of data points in different sleep stages.
+* Visualize the model structure.
+* Visualize the results in a confusion matrix and metric tables.
+
+### Process
+1. Collect data information
+2. Load data
+3. Bandpass filter and normalize
+4. Calculate statistics
+5. Save data
+6. Train the model
+7. Evaluate the model
+8. Select the best model and make predictions
+
+### Machine Learning Models
+* Implemented Linear Classifier and Multi-Layer Perceptron Classifier with sklearn.
+* Implemented Catboost Classifier from catboost library.
+* The models are trained to convert statistical features calculated from 6 feature channels into 6 distinct sleep stages.
+
+### Evaluation
 
 ## How we built it
 ### Data process
-
+* We built helper functions to load data.
+* We used packages and code from [paper](https://arxiv.org/abs/2207.07753) to calculate statistics.
+### Visualization
+* The process can be visualized in jupyter notebook.
 ### Model building
+* We used machine learning packages including sklearn and scipy.
 
 ## Challenges we ran into
+* Model evaluation
+  * We calculated F1 score, balanced accuracy, accuracy, and log loss for each model on training set and test set. Due to the time limit, we used the result from 2-fold cross validation.
+
+| Model  |Dataset | F1     | Balanced accuracy | Accuracy | Log loss |
+|--------|--------|--------|-------------------|----------|----------|
+|Linear  |train   | 0.8378 | 0.8529            | 0.8826   | 0.7567   |
+|Linear  |train   | 0.7242 | 0.7334            | 0.8005   |1.6495|
+|Catboost|train   | 0.9297 | 0.9193            | 0.9501   | 0.1736|
+|Catboost|test    | 0.7490 | 0.7440            | 0.8229   |0.4717|
+| MLP    |train   | 0.9061 | 0.8920            | 0.9397   |0.1700|
+| MLP    |test  | 0.7139 | 0.7125            | 0.7979   |0.6820|
+
+* Overfitting
+  * According to the result, the MLP model is overfitted to the training set, with a better score than the other 2 models on training set, while a worse score than the Catboost model on test set.
+  * The MLP model is overfitted because it is a complex model with too many parameters, so it can fit to the variation of data statistics, while leading to large bias. The overfitting is a result of the bias-variance trade off.
+
 
 ## Accomplishments that we're proud of
+* Finished a meaningful project in 36 hours.
+* Selected the best model and performed accurate prediction of sleep stage.
 
 ## What we learned
+* The data processing for time series data.
+  * The time series data can be analyzed as chunks of statistics.
+  * Time series data has dependencies on nearby data points.
+* Data visualization is important for the pipeline design.
+* Model building
+  * Select proper evaluation metrics.
+  * There are a lot of models on the shelf and we have to pick the best one based on the evaluation results.
 
 ## What's next for Stimulus
-
+* Check the contribution of each statistic, remove redundant statistics to save memory.
+* Try to integrate the model into devices that can report real-time sleep stage prediction. The model will change because we will not have datapoints after the predicted time point.
 
 This project highly relies on the ideas from the paper *Do Not Sleep on Traditional Machine Learning: Simple and Interpretable Techniques Are Competitive to Deep Learning for Sleep Scoring*.
 
