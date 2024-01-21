@@ -5,7 +5,7 @@
 </div>
 
 ## Inspiration
-
+* Bioengineering students interested in monitering sleep stages and how it can improve our living quality.
 
 ## What it does
 ### Data Wrangling
