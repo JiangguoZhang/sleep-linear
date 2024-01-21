@@ -118,9 +118,7 @@ The notebooks allow to reproduce the results as they contain;
 
 | notebook | dataset |
 |---|---|
-| [SleepEDF-SC +- 30min.ipynb](notebooks/SleepEDF-SC%20%2B-%2030min.ipynb) | `SC-EDF-20` & `SC-EDF-78` |
-| [SleepEDF-ST](notebooks/SleepEDF-ST.ipynb) | `SC-EDF-ST` |
-| [MASS-SS3](notebooks/MASS-SS3.ipynb) | `MASS SS3` | 
+| [SleepEDF-datathon.ipynb](notebooks/SleepEDF-datathon.ipynb) | `NeuroTech@Rice Challenge` |
 
 ---
 
