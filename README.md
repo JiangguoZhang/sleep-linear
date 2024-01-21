@@ -4,7 +4,27 @@
 <h2>Simple and Interpretable Techniques Are Competitive to Deep Learning for Sleep Scoring</h2>
 </div>
 
-Code from the paper *Do Not Sleep on Traditional Machine Learning: Simple and Interpretable Techniques Are Competitive to Deep Learning for Sleep Scoring*.
+## Inspiration
+
+## What it does
+1. Clean the dataset, process the data with bandpass filters, and calculate the meaningful time-domain and frequency-domain statistics.
+2. Implemented 3 different machine learning models, including Linear Classifier, Catboost Classifier, and Multi-Layer Perceptron Classifier, to convert extracted features into 6 different sleep stages.
+
+## How we built it
+### Data process
+
+### Model building
+
+## Challenges we ran into
+
+## Accomplishments that we're proud of
+
+## What we learned
+
+## What's next for Stimulus
+
+
+This project highly relies on the ideas from the paper *Do Not Sleep on Traditional Machine Learning: Simple and Interpretable Techniques Are Competitive to Deep Learning for Sleep Scoring*.
 
 Preprint: https://arxiv.org/abs/2207.07753  
 Published article: https://doi.org/10.1016/j.bspc.2022.104429
